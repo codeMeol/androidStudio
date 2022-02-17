@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lee/AndroidStudioProjects/androidStudio/app/src/main/res/drawable/round_btn.xml" value="0.1695" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/androidStudio/app/src/main/res/layout/activity_main.xml" value="0.22146739130434784" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/androidStudio/app/src/main/res/layout/activity_signup.xml" value="0.22146739130434784" />
         <entry key="..\:/android/SNSProject/app/src/main/res/drawable/round_btn.xml" value="0.38229166666666664" />
         <entry key="..\:/android/SNSProject/app/src/main/res/layout/activity_main.xml" value="0.28804347826086957" />
         <entry key="..\:/android/SNSProject/app/src/main/res/layout/activity_signup.xml" value="0.33" />
