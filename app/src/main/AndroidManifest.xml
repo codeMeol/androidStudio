@@ -21,6 +21,11 @@
         <activity
             android:name=".PostActivity">
         </activity>
+        <activity
+            android:name=".signUpActivity">
+        </activity>
+
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
 
     </application>
 
