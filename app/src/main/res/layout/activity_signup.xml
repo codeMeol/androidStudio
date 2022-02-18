@@ -127,6 +127,70 @@
         </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="휴대폰 인증"></TextView>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="휴대폰 번호"></TextView>
+          <EditText
+              android:layout_gravity="bottom"
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:text=""></EditText>
+
+            <Button
+                android:layout_gravity="top"
+                android:layout_width="94dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:autoSizeTextType="uniform"
+                android:text="인증번호 발송"></Button>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="인증 번호"></TextView>
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="60dp"></EditText>
+
+            <Button
+                android:layout_gravity="top"
+                android:layout_width="94dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:autoSizeTextType="uniform"
+                android:text="확인"></Button>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
