@@ -16,23 +16,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(mainBinding.getRoot());
-        mainBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_write);
+//        mainBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
-        mainBinding.signupTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), signUpActivity.class);
-                startActivity(intent);
-            }
-
-    });
+//        mainBinding.signupTv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), signUpActivity.class);
+//                startActivity(intent);
+//            }
+//
+//    });
 
     }
 }
