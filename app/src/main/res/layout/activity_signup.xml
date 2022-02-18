@@ -27,6 +27,7 @@
                 android:textSize="25dp"></TextView>
 
             <EditText
+                android:id="@+id/userId_et"
                 android:layout_weight="1"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
@@ -61,6 +62,7 @@
                 android:textSize="25dp"></TextView>
 
             <EditText
+                android:id="@+id/userPwd_et"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
@@ -87,6 +89,7 @@
                 android:autoSizeTextType="uniform"></TextView>
 
             <EditText
+                android:id="@+id/userPwdCheck_et"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
@@ -110,6 +113,7 @@
             android:textSize="25dp"></TextView>
 
         <EditText
+            android:id="@+id/userName_et"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="bottom"
@@ -133,6 +137,7 @@
                 android:textSize="25dp"></TextView>
 
             <EditText
+                android:id="@+id/userDateOfBirth_et"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
@@ -218,6 +223,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/signup_btn"
             android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="60dp"

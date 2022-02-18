@@ -83,20 +83,23 @@
         android:text="login"
         ></Button>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:weightSum="10"
         >
-
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_weight="2"></View>
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
 
-            android:layout_marginBottom="40dp"
-
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="40dp"
+            android:layout_gravity="end"
+        android:layout_weight="1"
             android:background="@drawable/round_btn"
             android:src="@mipmap/gmail"
             android:scaleType="fitXY"
@@ -105,7 +108,7 @@
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
-
+            android:layout_weight="1"
             android:background="@drawable/round_btn"
             android:src="@mipmap/naver"
             android:scaleType="fitXY"
@@ -115,7 +118,7 @@
         <ImageButton
         android:layout_width="30dp"
         android:layout_height="30dp"
-
+        android:layout_weight="1"
         android:background="@drawable/round_btn"
         android:src="@mipmap/kakao_talk"
         android:scaleType="fitXY"
