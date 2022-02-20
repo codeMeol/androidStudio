@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.snsproject.databinding.ActivitySignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,89 +27,117 @@ public class signUpActivity extends AppCompatActivity {
     String email;
     String pwd;
     String pwdcheck;
+    boolean proov;
+    String TAG ="로그용 텍스트";
+
+    ActivitySignupBinding activitySignupBinding;
+
+    private FirebaseAuth firebaseAuth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        activitySignupBinding = ActivitySignupBinding.inflate(getLayoutInflater());
+        setContentView(activitySignupBinding.getRoot());
 
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        Button signUpBtn=(Button)findViewById(R.id.signup_btn);
-        EditText userID = (EditText)findViewById(R.id.userId_et);
-        EditText userPWD = (EditText)findViewById(R.id.userPwd_et);
-        EditText userPwdCheck = (EditText)findViewById(R.id.userPwdCheck_et);
-        EditText userBirth = (EditText)findViewById(R.id.userDateOfBirth_et);
-        EditText userName = (EditText)findViewById(R.id.userName_et);
 
-//         email = userID.getText().toString().trim();
-//         pwd = userPWD.getText().toString().trim();
-//         pwdcheck = userPwdCheck.getText().toString().trim();
 
-        email="길동";
-        pwd="123455555";
-        pwdcheck="123455555";
 
-        Log.e("signupActivity", "onCreate: "+pwd+", "+ email+", "+ pwdcheck );
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
+
+        Log.e(TAG, "onCreate: "+email+pwd+pwdcheck );
+
+
+        activitySignupBinding.signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pwd.equals(pwdcheck)) {
-                    Log.e("signupActivity", "등록 버튼 " + email + " , " + pwd);
-                    final ProgressDialog mDialog = new ProgressDialog(signUpActivity.this);
-                    mDialog.setMessage("가입중입니다...");
-                    mDialog.show();
 
 
-                    //파이어베이스에 신규계정 등록하기
-                    firebaseAuth.createUserWithEmailAndPassword(email,pwd)
-                            .addOnCompleteListener(signUpActivity.this, new OnCompleteListener<AuthResult>() {
+                email = activitySignupBinding.userIdEt.getText().toString().trim();
+                pwd = activitySignupBinding.userPwdEt.getText().toString().trim();
+                pwdcheck = activitySignupBinding.userPwdEt.getText().toString().trim();
+                showProov(email, pwd);
 
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    //가입 성공시
-                                    if (task.isSuccessful()) {
-                                        mDialog.dismiss();
-
-                                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                                        String email = user.getEmail();
-                                        String uid = user.getUid();
-                                        String name = userName.getText().toString().trim();
-                                        String Birth = userBirth.getText().toString().trim();
-
-                                        //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                                        HashMap<Object, String> hashMap = new HashMap<>();
-
-                                        hashMap.put("uid", uid);
-                                        hashMap.put("email", email);
-                                        hashMap.put("name", name);
-//                                        hashMap.put("birth", Birth);
+                if (proov) {
 
 
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference reference = database.getReference("Users");
-                                        reference.child(uid).setValue(hashMap);
+                    if (pwd.equals(pwdcheck)) {
+                        Log.e("signupActivity", "등록 버튼 " + email + " , " + pwd);
+                        final ProgressDialog mDialog = new ProgressDialog(signUpActivity.this);
+                        mDialog.setMessage("가입중입니다...");
+                        mDialog.show();
 
 
-                                        //가입이 이루어져을시 가입 화면을 빠져나감.
-                                        Intent intent = new Intent(signUpActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                        Toast.makeText(getApplicationContext(), "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                        //파이어베이스에 신규계정 등록하기
+                        firebaseAuth.createUserWithEmailAndPassword(email, pwd)
+                                .addOnCompleteListener(signUpActivity.this, new OnCompleteListener<AuthResult>() {
 
-                                    } else {
-                                        mDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show();
-                                        return;  //해당 메소드 진행을 멈추고 빠져나감.
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                        //가입 성공시
+                                        if (task.isSuccessful()) {
+                                            mDialog.dismiss();
+
+                                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                                            String email = user.getEmail();
+                                            String uid = user.getUid();
+                                            String name = activitySignupBinding.userNameEt.getText().toString().trim();
+                                            String Birth = activitySignupBinding.userDateOfBirthEt.getText().toString().trim();
+
+                                            //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
+                                            HashMap<Object, String> hashMap = new HashMap<>();
+
+                                            hashMap.put("uid", uid);
+                                            hashMap.put("email", email);
+                                            hashMap.put("name", name);
+                                            hashMap.put("birth", Birth);
+                                            Log.e("signUpActivity,", "onComplete: " + hashMap);
+
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference reference = database.getReference("Users");
+                                            reference.child(uid).setValue(hashMap);
+
+
+                                            //가입이 이루어져을시 가입 화면을 빠져나감.
+                                            Intent intent = new Intent(signUpActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+
+
+                                        } else {
+                                            mDialog.dismiss();
+
+                                            Toast.makeText(signUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            return;  //해당 메소드 진행을 멈추고 빠져나감.
+
+                                        }
 
                                     }
-
-                                }
-                            });
+                                });
 
 
+                    }
                 }
             }
         });
+
+
+
+
+
+    }
+
+    public boolean showProov(String email,String pwd){
+        if(email.matches("^[A-z|0-9]([A-z|0-9]*)(@)([A-z]*)(\\.)([A-z]*)$")||
+                //이메일 형식이 맞을 때
+                pwd.length()>=6){
+                //비밀번호가 6자리 이상일 때
+
+          proov=true;
+        }
+
+
+        return proov;
     }
 }

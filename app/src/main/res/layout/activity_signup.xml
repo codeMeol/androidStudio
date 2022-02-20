@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +16,7 @@
 
         <LinearLayout
 
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40dp"
             android:weightSum="3"
@@ -19,37 +24,39 @@
 
             <TextView
                 android:layout_weight="1"
-                android:layout_width="110dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:text="아이디"
+                android:textScaleX="0.7"
                 android:textSize="25dp"></TextView>
 
             <EditText
+                android:text="do"
                 android:id="@+id/userId_et"
-                android:layout_weight="1"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
-                android:paddingTop="0.00000000001dp"
-                ></EditText>
+                android:layout_weight="1"
+                android:hint="gildong@gmail.com"
+                android:paddingTop="0.00000000001dp"></EditText>
 
             <Button
-                android:layout_weight="1"
-                android:layout_width="120dp"
+
+                android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:layout_gravity="bottom"
+                android:layout_gravity="right"
                 android:text="중복 확인"
-                android:layout_marginLeft="20dp"
+
                 android:layout_marginRight="5dp"
                 ></Button>
         </LinearLayout>
 
         <LinearLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
@@ -62,20 +69,22 @@
                 android:textSize="25dp"></TextView>
 
             <EditText
+                android:text="1111111"
                 android:id="@+id/userPwd_et"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="20dp"
+                android:gravity="bottom"
                 app:passwordToggleEnabled="true"
-                android:gravity="bottom"></EditText>
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
 
         </LinearLayout>
 
         <LinearLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
@@ -89,18 +98,20 @@
                 android:autoSizeTextType="uniform"></TextView>
 
             <EditText
+                android:text="1111111"
                 android:id="@+id/userPwdCheck_et"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="20dp"
+                android:gravity="bottom"
                 app:passwordToggleEnabled="true"
-                android:gravity="bottom"></EditText>
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
 
         </LinearLayout>   <LinearLayout
 
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
@@ -115,16 +126,17 @@
         <EditText
             android:id="@+id/userName_et"
             android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="20dp"
-            android:gravity="bottom"></EditText>
+            android:gravity="bottom"
+            android:hint="gildong"></EditText>
 
     </LinearLayout>
         <LinearLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
@@ -139,11 +151,12 @@
             <EditText
                 android:id="@+id/userDateOfBirth_et"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="5dp"
-                android:gravity="bottom"></EditText>
+                android:gravity="bottom"
+                android:hint="19981023"></EditText>
 
         </LinearLayout>
 
@@ -170,11 +183,15 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="휴대폰 번호"></TextView>
-          <EditText
-              android:layout_gravity="bottom"
-              android:layout_width="150dp"
-              android:layout_height="wrap_content"
-              android:text=""></EditText>
+
+            <EditText
+
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:minHeight="48dp"
+                android:text=""
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
 
             <Button
 
@@ -205,7 +222,8 @@
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="60dp"
-                android:layout_weight="2"></EditText>
+                android:layout_weight="2"
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
 
             <Button
                 android:layout_gravity="top"
@@ -232,6 +250,6 @@
             android:autoSizeTextType="uniform"
             android:text="가입하기"></Button>
     </LinearLayout>
+    </ScrollView>
 
-
-</ScrollView>
+</LinearLayout>
