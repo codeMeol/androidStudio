@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -34,11 +35,14 @@
                 android:layout_height="0dp"
                 android:layout_weight="8"
                 ></View>
+
             <EditText
+                android:id="@+id/etPostTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="70"></EditText>
+                android:layout_weight="70"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></EditText>
         </LinearLayout>
 
         <LinearLayout
@@ -53,22 +57,23 @@
                 ></View>
 
 
-
             <EditText
+                android:id="@+id/etPostContents"
                 android:layout_width="1dp"
                 android:layout_height="500dp"
-                android:inputType="textMultiLine|textNoSuggestions"
                 android:layout_weight="80"
-                android:gravity="top"
+                android:background="@drawable/border"
                 android:cursorVisible="true"
+                android:gravity="top"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:overScrollMode="always"
+                android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical"
-                android:overScrollMode="always"
-                android:background="@drawable/border"></EditText>
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
 
 
             <View
@@ -86,6 +91,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="50"></View>
             <Button
+                android:id="@+id/btnPostSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="저장"

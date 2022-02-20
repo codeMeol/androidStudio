@@ -42,9 +42,6 @@ public class signUpActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-
-
-
         Log.e(TAG, "onCreate: "+email+pwd+pwdcheck );
 
 
@@ -119,11 +116,10 @@ public class signUpActivity extends AppCompatActivity {
 
                     }
                 }
+                else
+                    Toast.makeText(getApplicationContext(),"아이디는 이메일 형식에 맞춰서 비밀번호는 7자리 이상입니다.",Toast.LENGTH_SHORT);
             }
         });
-
-
-
 
 
     }
@@ -131,12 +127,11 @@ public class signUpActivity extends AppCompatActivity {
     public boolean showProov(String email,String pwd){
         if(email.matches("^[A-z|0-9]([A-z|0-9]*)(@)([A-z]*)(\\.)([A-z]*)$")||
                 //이메일 형식이 맞을 때
-                pwd.length()>=6){
-                //비밀번호가 6자리 이상일 때
+                pwd.length()>=7){
+                //비밀번호가 7자리 이상일 때
 
           proov=true;
         }
-
 
         return proov;
     }
