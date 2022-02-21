@@ -38,7 +38,7 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         mDatabase = FirebaseDatabase.getInstance().getReference("PostData");
         contentsCofigList = new ArrayList<ContentsCofiguration>();//PostData=> 데이터 클래스
-        mDatabase.child("post").child("lastestTest").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("post").child("lastestTest1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e(TAG, "onDataChange:" + snapshot.getValue());

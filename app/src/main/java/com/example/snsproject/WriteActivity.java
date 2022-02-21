@@ -8,20 +8,29 @@ import android.view.View;
 
 
 import com.example.snsproject.databinding.ActivityWriteBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import static android.content.ContentValues.TAG;
 
 public class WriteActivity extends AppCompatActivity {
     ActivityWriteBinding activityWriteBinding;
     DatabaseReference reference;
     FirebaseDatabase database;
     String etPostTitle;
-    String postUid;
+    int titleUid;
+    ArrayList<String> myList;
     String etPostContent;
     int ranUid;
 
@@ -33,8 +42,7 @@ public class WriteActivity extends AppCompatActivity {
         setContentView(activityWriteBinding.getRoot());
         database = FirebaseDatabase.getInstance();
         reference=database.getReference("PostData");
-        Random random = new Random();
-         ranUid = random.nextInt(10000);
+
         activityWriteBinding.btnPostSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,9 +65,54 @@ public class WriteActivity extends AppCompatActivity {
 
     }
     public void writeNewContent(String etPostTitle, String etPostContent) {
+        Random random = new Random();
+        myList=new ArrayList<String>();
+        ranUid = random.nextInt(10000);
         ContentsCofiguration content = new ContentsCofiguration(etPostTitle, etPostContent,ranUid,0);
+        reference.child("post").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getChildrenCount()>=1){
 
-        reference.child("post").child("lastestTest").setValue(content);
+                for(int ji=1;ji<= snapshot.getChildrenCount();ji++) {
+                   reference=  database.getReference("PostData");
+
+                    reference.child("post").child("lastestTest"+ji).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            myList.add(String.valueOf(snapshot.getValue()));
+
+//                                if (String.valueOf(ranUid)==myList.get(0)){
+//                                    //고유 Uid가 같을 경우 아무것도 하지 않음
+//
+//                                }
+//                                else {
+//
+//                                    //고유 Uid가 다를 경우 lastest+n번째 값으로 새로 하나 만듬
+//                                    reference.child("post").child("lastestTest" +1 ).setValue(content);
+//                                }
+                            }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+
+
+            }
+        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
     }
 }
