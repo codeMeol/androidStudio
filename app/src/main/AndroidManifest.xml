@@ -27,6 +27,9 @@
         <activity
             android:name=".signUpActivity">
         </activity>
+        <activity android:name=".WriteActivity">
+
+        </activity>
 
         <meta-data android:name="android.max_aspect" android:value="2.1" />
 

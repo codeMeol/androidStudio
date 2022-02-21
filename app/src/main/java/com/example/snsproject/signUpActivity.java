@@ -91,9 +91,9 @@ public class signUpActivity extends AppCompatActivity {
                                             hashMap.put("birth", Birth);
                                             Log.e("signUpActivity,", "onComplete: " + hashMap);
 
-                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                            DatabaseReference reference = database.getReference("Users");
-                                            reference.child(uid).setValue(hashMap);
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance(); //데이터베이스를 사용하겠다.
+                                            DatabaseReference reference = database.getReference("Users");  //realtime db에 연결
+                                            reference.child(uid).setValue(hashMap);//users->uid->hashmap
 
 
                                             //가입이 이루어져을시 가입 화면을 빠져나감.
@@ -135,4 +135,6 @@ public class signUpActivity extends AppCompatActivity {
 
         return proov;
     }
+
+
 }

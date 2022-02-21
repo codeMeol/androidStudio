@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,10 +13,10 @@ public class PostAdapter extends BaseAdapter {
 
     Context mContext = null;
     LayoutInflater mLayoutInflater = null;
-    ArrayList<PostData> postData;
+    ArrayList<ContentsCofiguration> postData;
 
 
-    public PostAdapter(Context context, ArrayList<PostData> data) {
+    public PostAdapter(Context context, ArrayList<ContentsCofiguration> data) {
         mContext = context;
         postData = data;
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -32,7 +31,7 @@ public class PostAdapter extends BaseAdapter {
     //여기에서 항목은 자식 뷰의 내용을 갖는 객체입니다.
 
     @Override
-    public PostData getItem(int position) {
+    public ContentsCofiguration getItem(int position) {
         return postData.get(position);
     }
     //모르겠음
