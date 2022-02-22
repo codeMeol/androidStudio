@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -31,20 +34,50 @@ public class signUpActivity extends AppCompatActivity {
     String TAG ="로그용 텍스트";
 
     ActivitySignupBinding activitySignupBinding;
-
+    DatabaseReference dbRef;
     private FirebaseAuth firebaseAuth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activitySignupBinding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(activitySignupBinding.getRoot());
 
-
+        dbRef=FirebaseDatabase.getInstance().getReference("users");
         firebaseAuth = FirebaseAuth.getInstance();
 
 
         Log.e(TAG, "onCreate: "+email+pwd+pwdcheck );
 
+        activitySignupBinding.doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                email = activitySignupBinding.userIdEt.getText().toString().trim();
+                ExtractionString ets = new ExtractionString(email);
 
+                dbRef.child(ets.getEmail()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Log.e(TAG, "email value: "+snapshot.getValue());
+
+                        if(snapshot.getValue()==null){
+                            Log.e(TAG, "싸인업액티비티: "+" 만드실 수 있습니다." );
+
+                        }
+                        else
+                        {
+                            Log.e(TAG, "만드실 수 없습니다. ");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+        });
         activitySignupBinding.signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,53 +100,54 @@ public class signUpActivity extends AppCompatActivity {
 
                         //파이어베이스에 신규계정 등록하기
                         firebaseAuth.createUserWithEmailAndPassword(email, pwd)
-                                .addOnCompleteListener(signUpActivity.this, new OnCompleteListener<AuthResult>() {
+                          .addOnCompleteListener(signUpActivity.this, new OnCompleteListener<AuthResult>() {
 
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                            @Override
+                             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                        //가입 성공시
-                                        if (task.isSuccessful()) {
-                                            mDialog.dismiss();
+                               //가입 성공시
+                              if (task.isSuccessful()) {
+                               mDialog.dismiss();
 
-                                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                                            String email = user.getEmail();
-                                            String uid = user.getUid();
-                                            String name = activitySignupBinding.userNameEt.getText().toString().trim();
-                                            String Birth = activitySignupBinding.userDateOfBirthEt.getText().toString().trim();
+                                  FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                                            //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                                            HashMap<Object, String> hashMap = new HashMap<>();
+                                  ExtractionString ets=new ExtractionString(user.getEmail());
 
-                                            hashMap.put("uid", uid);
-                                            hashMap.put("email", email);
-                                            hashMap.put("name", name);
-                                            hashMap.put("birth", Birth);
+                                  Log.e(TAG, "ExtractionString "+", "+ets.getEmail());
+                                  String email = user.getEmail();
+                                  String uid = user.getUid();
+                                  String name = activitySignupBinding.userNameEt.getText().toString().trim();
+                                  String Birth = activitySignupBinding.userDateOfBirthEt.getText().toString().trim();
 
+                                  //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
+                                  HashMap<Object, String> hashMap = new HashMap<>();
 
-                                            FirebaseDatabase database = FirebaseDatabase.getInstance(); //데이터베이스를 사용하겠다.
-                                            DatabaseReference reference = database.getReference("Users");  //realtime db에 연결
-                                            reference.child(uid).setValue(hashMap);//users->uid->hashmap
-
-
-                                            //가입이 이루어져을시 가입 화면을 빠져나감.
-                                            Intent intent = new Intent(signUpActivity.this, MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
+                                  hashMap.put("uid", uid);
+                                  hashMap.put("email", email);
+                                  hashMap.put("name", name);
+                                  hashMap.put("birth", Birth);
 
 
-                                        } else {
-                                            mDialog.dismiss();
-
-                                            Toast.makeText(signUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            return;  //해당 메소드 진행을 멈추고 빠져나감.
-
-                                        }
-
-                                    }
-                                });
+                                  FirebaseDatabase database = FirebaseDatabase.getInstance(); //데이터베이스를 사용하겠다.
+                                  DatabaseReference reference = database.getReference("Users");  //realtime db에 연결
+                                  reference.child(ets.getEmail()).setValue(hashMap);//users->uid->hashmap
 
 
+                                  //가입이 이루어져을시 가입 화면을 빠져나감.
+                                  Intent intent = new Intent(signUpActivity.this, MainActivity.class);
+                                  startActivity(intent);
+                                  finish();
+
+
+                              } else {
+                                  mDialog.dismiss();
+
+                                  Toast.makeText(signUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                  return;  //해당 메소드 진행을 멈추고 빠져나감.
+
+                               }
+                           }
+                         });
                     }
                 }
                 else

@@ -33,7 +33,7 @@ public class PostActivity extends AppCompatActivity {
     ContentsCofiguration contentsCofiguration;
     int lasnum;
     PostAdapter myPostAdapter;
-    String userProfile,userUid;
+    String userEmail,userUid;
     //   String postUid;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +43,10 @@ public class PostActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.post_listView);
         mDatabase = FirebaseDatabase.getInstance().getReference("PostData");
         contentsCofigList = new ArrayList<ContentsCofiguration>();//PostData=> 데이터 클래스
+
+
         //DB PostData하위post하위에 몇개나 게시물이 있는지 확인하는 부분
+
         mDatabase.child("post").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -54,8 +57,6 @@ public class PostActivity extends AppCompatActivity {
                     mDatabase.child("post").child("lastestTest"+i).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
 
                             contentsCofiguration = snapshot.getValue(ContentsCofiguration.class);
 
@@ -85,10 +86,6 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
                 //리스트뷰중에 한개 클릭했을 때 그거에 리스너를 달아서 토스트 메시지 실행
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -114,14 +111,14 @@ public class PostActivity extends AppCompatActivity {
 
         userDatabase= FirebaseDatabase.getInstance().getReference("Users");
 
-        userUid=getIntent().getStringExtra("userUID");
+        userEmail=getIntent().getStringExtra("userEmail");
 
-        userDatabase.child(userUid).child("name").addValueEventListener(new ValueEventListener() {
+        userDatabase.child(userEmail).child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userProfile=snapshot.getValue().toString();
+               String stSnap=snapshot.getValue().toString();
                 TextView activityPostUserNickname = (TextView)findViewById(R.id.postActivityUserNicknameTv);
-                activityPostUserNickname.setText(userProfile+"님 안녕하세요");
+                activityPostUserNickname.setText(stSnap+"님 안녕하세요");
             }
 
             @Override
