@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user=firebaseAuth.getCurrentUser();
                                 Intent intent = new Intent(getApplicationContext(), PostActivity.class);
-                                intent.putExtra("userEmail",etID);
+                                ExtractionString ets= new ExtractionString(etID);
+                                intent.putExtra("userEmail",ets.getEmail());
                                 intent.putExtra("userUID",user.getUid());
                                 startActivity(intent);
 
