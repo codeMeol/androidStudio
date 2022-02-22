@@ -89,7 +89,7 @@ public class signUpActivity extends AppCompatActivity {
                                             hashMap.put("email", email);
                                             hashMap.put("name", name);
                                             hashMap.put("birth", Birth);
-                                            Log.e("signUpActivity,", "onComplete: " + hashMap);
+
 
                                             FirebaseDatabase database = FirebaseDatabase.getInstance(); //데이터베이스를 사용하겠다.
                                             DatabaseReference reference = database.getReference("Users");  //realtime db에 연결

@@ -32,7 +32,7 @@ public class WriteActivity extends AppCompatActivity {
     int titleUid;
     ArrayList<String> myList;
     String etPostContent;
-    int ranUid;
+    int ranUid, postCount;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class WriteActivity extends AppCompatActivity {
         setContentView(activityWriteBinding.getRoot());
         database = FirebaseDatabase.getInstance();
         reference=database.getReference("PostData");
-
+        myList=new ArrayList<String>();
         activityWriteBinding.btnPostSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,45 +65,44 @@ public class WriteActivity extends AppCompatActivity {
 
     }
     public void writeNewContent(String etPostTitle, String etPostContent) {
-        Random random = new Random();
-        myList=new ArrayList<String>();
-        ranUid = random.nextInt(10000);
-        ContentsCofiguration content = new ContentsCofiguration(etPostTitle, etPostContent,ranUid,0);
+             random();//randomUid create
+
+
+
         reference.child("post").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getChildrenCount()>=1){
-
-                for(int ji=1;ji<= snapshot.getChildrenCount();ji++) {
+                  postCount = (int)snapshot.getChildrenCount();
+                for(int ji=1;ji<= postCount;ji++) {
                    reference=  database.getReference("PostData");
 
-                    reference.child("post").child("lastestTest"+ji).addListenerForSingleValueEvent(new ValueEventListener() {
+                    int finalJi = ji;
+                    reference.child("post").child("lastestTest"+ji).child("ranUid").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                            Log.e(TAG, "스냅샷의 값: " + snapshot.getValue());
+                            ;
                             myList.add(String.valueOf(snapshot.getValue()));
-
-//                                if (String.valueOf(ranUid)==myList.get(0)){
-//                                    //고유 Uid가 같을 경우 아무것도 하지 않음
-//
-//                                }
-//                                else {
-//
-//                                    //고유 Uid가 다를 경우 lastest+n번째 값으로 새로 하나 만듬
-//                                    reference.child("post").child("lastestTest" +1 ).setValue(content);
-//                                }
-                            }
-
+                            Log.e(TAG, "mylist.size "+myList.size() );
+                             if(finalJi ==postCount){
+                                 onFirebase();
+                             }
+                        }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
                         }
                     });
+
                 }
 
+            }else {
+                    ContentsCofiguration content = new ContentsCofiguration(etPostTitle, etPostContent, ranUid, 0);
+                    reference.child("post").child("lastestTest" + (postCount + 1)).setValue(content);
+                }
 
-            }
         }
 
             @Override
@@ -114,6 +113,34 @@ public class WriteActivity extends AppCompatActivity {
 
 
 
+
+
+
+    }
+    public void onFirebase(){
+        Log.e(TAG, "마이리스트의 값: "+"   "+myList.size() );
+        ContentsCofiguration content = new ContentsCofiguration(etPostTitle, etPostContent,ranUid,0);
+
+        for (int i = 0; i < postCount; i++) {
+
+            if(myList.size()>=1) {
+                if (String.valueOf(ranUid).equals(myList.get(i))) {
+
+                    //고유 Uid가 같을 경우 UID 값 재부여
+                        random();
+                        i=0;//초기화
+                } else {
+
+                    // 고유 Uid가 다를 경우 lastest+n번째 값으로 새로 하나 만듬
+                    reference.child("post").child("lastestTest" +(postCount+ 1)).setValue(content);
+                }
+            }
+        }
+    }
+
+    public void random(){
+        Random random = new Random();
+        ranUid = random.nextInt(10000);
     }
 }
 
