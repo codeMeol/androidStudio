@@ -33,7 +33,7 @@ public class PostActivity extends AppCompatActivity {
     ContentsCofiguration contentsCofiguration;
     int lasnum;
     PostAdapter myPostAdapter;
-    String userEmail,userUid;
+    String userEmail,userAdmin;
     //   String postUid;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,22 +110,29 @@ public class PostActivity extends AppCompatActivity {
 
 
         userDatabase= FirebaseDatabase.getInstance().getReference("Users");
-
+        userAdmin=getIntent().getStringExtra("userAdmin");
         userEmail=getIntent().getStringExtra("userEmail");
+        if(!userAdmin.equals("admin")) {
+            Log.e(TAG, "onCreate: " + userEmail);
+            userDatabase.child(userEmail).child("name").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String stSnap = snapshot.getValue().toString();
+                    TextView activityPostUserNickname = (TextView) findViewById(R.id.postActivityUserNicknameTv);
+                    activityPostUserNickname.setText(stSnap + "님 안녕하세요");
+                }
 
-        userDatabase.child(userEmail).child("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-               String stSnap=snapshot.getValue().toString();
-                TextView activityPostUserNickname = (TextView)findViewById(R.id.postActivityUserNicknameTv);
-                activityPostUserNickname.setText(stSnap+"님 안녕하세요");
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
 
-            }
-        });
+else {
+            TextView activityPostUserNickname = (TextView) findViewById(R.id.postActivityUserNicknameTv);
+            activityPostUserNickname.setText("admin" + "님 안녕하세요");
+        }
 
             postActivityUserLogoutTv.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(etID.equals("admin")){
                     Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+
+                    intent.putExtra("userAdmin",etID);
                     startActivity(intent);
                 }
                 else {
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser user=firebaseAuth.getCurrentUser();
                                 Intent intent = new Intent(getApplicationContext(), PostActivity.class);
                                 ExtractionString ets= new ExtractionString(etID);
+                                String adminID =ets.getEmail();
+
                                 intent.putExtra("userEmail",ets.getEmail());
                                 intent.putExtra("userUID",user.getUid());
                                 startActivity(intent);
