@@ -90,10 +90,11 @@ public class PostActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id) {
-                        Toast.makeText(getApplicationContext(),
-                                myPostAdapter.getItem(position).getTitle(),
-                                Toast.LENGTH_LONG).show();
-
+                        Intent intent = new Intent(getApplicationContext(),PostViewActivity.class);
+                        String title = myPostAdapter.getItem(position).getTitle();
+                        intent.putExtra("title",title);
+                        intent.putExtra("position",myPostAdapter.getItem(position).toString());
+                        startActivity(intent);
 
                     }
                 });

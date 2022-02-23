@@ -21,14 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PostActivity">
         </activity>
+
         <activity
             android:name=".signUpActivity">
         </activity>
-        <activity android:name=".WriteActivity">
 
+        <activity android:name=".WriteActivity">
+        </activity>
+
+        <activity android:name=".PostViewActivity">
         </activity>
 
         <meta-data android:name="android.max_aspect" android:value="2.1" />

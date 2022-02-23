@@ -38,7 +38,7 @@
 
             <EditText
                 android:id="@+id/etPostTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="70"
@@ -50,11 +50,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="100">
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                ></View>
+                android:layout_weight="10"></View>
 
 
             <EditText
@@ -67,29 +67,26 @@
                 android:gravity="top"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:overScrollMode="always"
-                android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:privateImeOptions="defaultInputmode=korean"
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical"
                 tools:ignore="SpeakableTextPresentCheck"></EditText>
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"></View>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
             android:weightSum="100">
+
             <View
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="50"></View>
+
             <Button
                 android:id="@+id/btnPostSave"
                 android:layout_width="wrap_content"
