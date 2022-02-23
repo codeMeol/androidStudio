@@ -82,7 +82,6 @@ public class signUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 email = activitySignupBinding.userIdEt.getText().toString().trim();
                 pwd = activitySignupBinding.userPwdEt.getText().toString().trim();
                 pwdcheck = activitySignupBinding.userPwdEt.getText().toString().trim();

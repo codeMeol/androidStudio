@@ -51,7 +51,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 lasnum=(int)snapshot.getChildrenCount();//getChildrencount는 long타입이라서 int형태로 캐스팅 해줬음
-
+                contentsCofigList.clear();
                 for(int i=1;i<=lasnum;i++){
                     int finalI = i;
                     mDatabase.child("post").child("lastestTest"+i).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -86,19 +86,20 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-                //리스트뷰중에 한개 클릭했을 때 그거에 리스너를 달아서 토스트 메시지 실행
+        //포스트 들어가기
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id) {
                         Intent intent = new Intent(getApplicationContext(),PostViewActivity.class);
                         String title = myPostAdapter.getItem(position).getTitle();
+                        intent.putExtra("userEmail",userEmail);
                         intent.putExtra("title",title);
-                        intent.putExtra("position",myPostAdapter.getItem(position).toString());
+                        intent.putExtra("position",String.valueOf(position+1));
                         startActivity(intent);
 
                     }
                 });
-
+        //새포스트 만들기
         btnCreatePost = (Button) findViewById(R.id.btnCreatePost);
 
         btnCreatePost.setOnClickListener(new View.OnClickListener() {
@@ -109,11 +110,12 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-
+        //우측 상단에 사용자 이름 띄우기
+        //일반 사용자
         userDatabase= FirebaseDatabase.getInstance().getReference("Users");
         userAdmin=getIntent().getStringExtra("userAdmin");
         userEmail=getIntent().getStringExtra("userEmail");
-        if(!userAdmin.equals("admin")) {
+        if(!(userEmail.equals("admin"))) {
             Log.e(TAG, "onCreate: " + userEmail);
             userDatabase.child(userEmail).child("name").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -130,11 +132,13 @@ public class PostActivity extends AppCompatActivity {
             });
         }
 
-else {
+        else {
+             //admin사용자
             TextView activityPostUserNickname = (TextView) findViewById(R.id.postActivityUserNicknameTv);
             activityPostUserNickname.setText("admin" + "님 안녕하세요");
-        }
+            }
 
+            //로그아웃 리스너
             postActivityUserLogoutTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
