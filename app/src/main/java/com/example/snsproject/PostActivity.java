@@ -115,7 +115,7 @@ public class PostActivity extends AppCompatActivity {
         userDatabase= FirebaseDatabase.getInstance().getReference("Users");
         userAdmin=getIntent().getStringExtra("userAdmin");
         userEmail=getIntent().getStringExtra("userEmail");
-        if(!(userEmail.equals("admin"))) {
+        if(!(userEmail.equals("admin"))||userEmail!=null) {
             Log.e(TAG, "onCreate: " + userEmail);
             userDatabase.child(userEmail).child("name").addValueEventListener(new ValueEventListener() {
                 @Override
