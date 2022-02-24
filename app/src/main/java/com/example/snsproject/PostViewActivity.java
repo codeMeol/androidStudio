@@ -72,6 +72,7 @@ public class PostViewActivity extends AppCompatActivity {
                         if(snapshot.getKey()==null){//키값이 없을 경우
                             suggestBool=true;
                              suggestBtn();
+
                         }
                         else{//키값이 있을 경우 밸류 값을 받는다
                             suggestPlusMinusStr= (String) snapshot.getValue();
@@ -86,6 +87,7 @@ public class PostViewActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
+
         });
 
 
@@ -104,6 +106,7 @@ public class PostViewActivity extends AppCompatActivity {
                     suggestion += 1;//추천 값 1 올려주고
                     mDatabase.child("post").child(lastestpost).child("suggestion").setValue(suggestion);//포스트 경로의 추천값 등록
                     postViewSuggestionTv.setText("" + suggestion);//추천 값을 등록해준다
+                    postViewApproveBtn.setBackgroundResource(R.mipmap.pressed_approve_icon);
                     //추천을 했으니 버튼 비활성화
                 }
                 else if(suggestPlusMinusStr.equals("approve")){
@@ -117,6 +120,7 @@ public class PostViewActivity extends AppCompatActivity {
                             suggestion += 1;//추천 값 1 올려주고
                             mDatabase.child("post").child(lastestpost).child("suggestion").setValue(suggestion);//포스트 경로의 추천값 등록
                             postViewSuggestionTv.setText("" + suggestion);//추천 값을 등록해준다
+                            postViewDisapproveBtn.setBackgroundResource(R.mipmap.disapprove_icon);
                         }
                     });
                  //버튼 닫아줍니다.
@@ -135,6 +139,7 @@ public class PostViewActivity extends AppCompatActivity {
                         suggestion -= 1;//추천 값 1 올려주고
                         mDatabase.child("post").child(lastestpost).child("suggestion").setValue(suggestion);//포스트 경로의 추천값 등록
                         postViewSuggestionTv.setText("" + suggestion);//추천 값을 등록해준다
+                        postViewDisapproveBtn.setBackgroundResource(R.mipmap.pressed_disapprove_icon);
                         //추천을 했으니 버튼 비활성화
                     }
                     else if(suggestPlusMinusStr.equals("disapprove")){
@@ -147,6 +152,7 @@ public class PostViewActivity extends AppCompatActivity {
                                 suggestion -= 1;//추천 값 1 올려주고
                                 mDatabase.child("post").child(lastestpost).child("suggestion").setValue(suggestion);
                                 postViewSuggestionTv.setText("" + suggestion);//추천 값을 등록해준다
+                                postViewApproveBtn.setBackgroundResource(R.mipmap.approve_icon);
                                 Log.e(TAG, "지워졌습니다." );
 
                             }
