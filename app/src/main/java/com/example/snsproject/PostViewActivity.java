@@ -77,7 +77,7 @@ public class PostViewActivity extends AppCompatActivity {
                         else{//키값이 있을 경우 밸류 값을 받는다
                             suggestPlusMinusStr= (String) snapshot.getValue();
                             if(suggestPlusMinusStr == null){}
-                            else if(suggestPlusMinusStr.equals("disapprove")){postViewDisapproveBtn.setBackgroundResource(R.mipmap.pressed_disapprove_icon);}
+                            else if(suggestPlusMinusStr.equals("disgiapprove")){postViewDisapproveBtn.setBackgroundResource(R.mipmap.pressed_disapprove_icon);}
                             else if(suggestPlusMinusStr.equals("approve")){postViewApproveBtn.setBackgroundResource(R.mipmap.pressed_approve_icon);}
                             suggestBtn();
                         }
