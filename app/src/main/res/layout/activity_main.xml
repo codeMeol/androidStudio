@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/date"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/btn_main_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="68dp"
+            android:background="@drawable/round_btn"
+            android:text="LOGIN"
+            android:textSize="27dp"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            app:backgroundTint="#00ffffff"
+            android:fontFamily="@font/jalnan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="92dp"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            app:layout_constraintBottom_toTopOf="@+id/btn_main_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/tv_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="@font/jalnan"
+                android:gravity="center"
+                android:text="회원가입" />
+
+            <TextView
+                android:id="@+id/tv_findpass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="@font/jalnan"
+                android:gravity="center"
+                android:text="비밀번호 찾기" />
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></View>
+
+        </LinearLayout>
+
+        <TextView
+
+            android:id="@+id/textView"
+            android:layout_width="293dp"
+            android:layout_height="129dp"
+            android:layout_marginTop="96dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/jalnan"
+            android:padding="15dp"
+            android:text="@string/main_tv"
+            android:textColor="#BB35200B"
+            android:textSize="44sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="218dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/main_textInputLayout_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                >
+
+                <EditText
+                    android:background="#00000000"
+
+                    android:id="@+id/Edit_ID"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:hint="아이디입니다"
+                    android:inputType="text"
+
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/main_textInputLayout_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <EditText
+                    android:id="@+id/Edit_ID2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#00000000"
+                    android:layout_gravity="center"
+                    android:hint="비밀번호를 입력하세요"
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

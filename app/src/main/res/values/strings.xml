@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">free_mbti_chat</string>
+    <string name="main_tv">MBTI CHATING</string>
+    <string name="admob_app_id">ca-app-pub-7026697123525361~6570604599</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7026697123525361/6379032900</string>
+    <string name="banner_ad_unit_id_for_test">ca-app-pub-3940256099942544/6300978111</string>
+</resources>
