@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#0000ff"
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <Button
+            android:id="@+id/btnCreatePost"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="새 포스트"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.272"></Button>
+
+        <TextView
+            android:id="@+id/postActivityUserNicknameTv"
+            android:layout_width="149dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="76dp"
+            android:text="당신의 이름님 안녕하세요"
+            android:textSize="13dp"
+            android:background="#20FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/postActivityUserLogout"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toEndOf="@+id/btnCreatePost"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.153"></TextView>
+
+        <TextView
+            android:id="@+id/postActivityUserLogout"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="20dp"
+            android:background="#20FFFFFF"
+            android:text="Logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.142"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ListView
+                android:id="@+id/post_listView"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+            android:background="#FFFFFF">
+
+        </ListView>
+    </LinearLayout>
+    </ScrollView>
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#ff0000"
+            android:layout_gravity="bottom">
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+

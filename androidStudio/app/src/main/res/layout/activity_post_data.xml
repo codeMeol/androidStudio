@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--게시글 입력하는 형태를 데이터화한 레이아웃입니다.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+    >
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:id="@+id/postTitle"
+
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="TextView" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></View>
+        <TextView
+
+            android:gravity="center"
+
+            android:layout_gravity="right"
+            android:id="@+id/suggestion"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:text="TextView" />
+
+    </LinearLayout>
+</LinearLayout>

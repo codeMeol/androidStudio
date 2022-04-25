@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="아이디"
+                android:textScaleX="0.7"
+                android:textSize="25dp"></TextView>
+
+            <EditText
+                android:text=""
+                android:id="@+id/userId_et"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:hint="gildong@gmail.com"
+                android:paddingTop="0.00000000001dp"></EditText>
+
+            <Button
+                android:id="@+id/doubleCheckBtn"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_gravity="right"
+                android:text="중복 확인"
+
+                android:layout_marginRight="5dp"
+                ></Button>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="비밀번호"
+                android:textSize="25dp"></TextView>
+
+            <EditText
+                android:text=""
+                android:id="@+id/userPwd_et"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
+                android:gravity="bottom"
+                android:inputType="textPassword"
+                app:passwordToggleEnabled="true"
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="비밀번호 확인"
+                android:textSize="25dp"
+                android:autoSizeTextType="uniform"></TextView>
+
+            <EditText
+                android:text=""
+                android:inputType="textPassword"
+                android:id="@+id/userPwdCheck_et"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
+                android:gravity="bottom"
+                app:passwordToggleEnabled="true"
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
+
+        </LinearLayout>   <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="이름"
+            android:textSize="25dp"></TextView>
+
+        <EditText
+            android:id="@+id/userName_et"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:gravity="bottom"
+            android:hint="gildong"></EditText>
+
+    </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="생년월일"
+                android:textSize="25dp"></TextView>
+
+            <EditText
+                android:id="@+id/userDateOfBirth_et"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:gravity="bottom"
+                android:hint="19981023"></EditText>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="휴대폰 인증"></TextView>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="휴대폰 번호"></TextView>
+
+            <EditText
+
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:minHeight="48dp"
+                android:text=""
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
+
+            <Button
+                android:id="@+id/signUpSmsBtn"
+                android:layout_width="94dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:autoSizeTextType="uniform"
+                android:text="인증번호 발송"></Button>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:weightSum="5">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:text="인증 번호"
+                android:layout_weight="2"></TextView>
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_weight="2"
+                tools:ignore="SpeakableTextPresentCheck"></EditText>
+
+            <Button
+                android:layout_gravity="top"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:autoSizeTextType="uniform"
+                android:layout_weight="1"
+                android:text="확인"></Button>
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signup_btn"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+
+            android:layout_marginTop="20dp"
+            android:autoSizeTextType="uniform"
+            android:text="가입하기"></Button>
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
